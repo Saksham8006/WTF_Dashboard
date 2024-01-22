@@ -1,44 +1,7 @@
-"use client"
-
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
-import { useRouter } from 'next/navigation'
-const url = "http://localhost:3002/api/user/login"
-
 
 
 const Login = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const router = useRouter(); // useRouter hook
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const data = {
-      email: email,
-      password: password
-    }
-
-    axios.post(`${url}`, data)
-      .then((response) => {
-        console.log("response", response);
-        const userTokenToSave = response.data.accessToken;
-        localStorage.setItem("AccessToken", userTokenToSave);
-        setEmail(" ");
-        setPassword(" ");
-        toast.success("User Login Successfully")
-        console.log("user logged in successfully")
-        // router.push("/auth/register");
-      }).catch((error) => {
-        console.log("error is : ", error.message)
-      })
-
-
-  }
 
 
   return (
